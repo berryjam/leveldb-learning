@@ -42,6 +42,15 @@ int main(int argc, char **argv)
     else
         std::cout << key << "===" << value << std::endl;
 
+    std::string value3;
+    std::string key3 = "key3";
+    status = db->Put(leveldb::WriteOptions(), "key3", "222");
+    assert(status.ok());
+
+    status = db->Get(leveldb::ReadOptions(), "key3", &value3);
+    assert(status.ok());
+    std::cout << "key3"<< "===" << std::stoi(value3) << std::endl;
+
     delete db;
 
     return 0;
